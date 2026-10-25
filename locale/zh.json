@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "ASCII 鲨鱼 · 深海背景",
+    "description": "把 ascii-sharks 的鲨鱼画布嵌到 DSH 界面背后，只调整基础表面的透明度，不替换任何布局。"
+  }
+}

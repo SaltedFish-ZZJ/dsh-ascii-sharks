@@ -1,0 +1,6 @@
+# dsh-ascii-sharks bundle patch: one Web-client-only row.
+# The Host half is empty; the Client half owns the canvas, the token override,
+# and all cleanup.
+- insert:
+    - id: dsh-ascii-sharks
+      name: 'dsh-ascii-sharks'

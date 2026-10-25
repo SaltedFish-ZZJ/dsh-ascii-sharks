@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "ASCII Sharks · Ocean Background",
+    "description": "The original ascii-sharks canvas as a live background behind the DeepSeek Harness Web UI. It only adjusts the base surface transparency; no layout is replaced."
+  }
+}
