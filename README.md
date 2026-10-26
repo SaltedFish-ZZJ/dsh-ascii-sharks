@@ -8,7 +8,8 @@
 
 ## 它做了什么
 
-- 把上游 `ascii-sharks.html` 的内联引擎原样打包进 `lib/client.js`，只改最后一行：
+- 把上游 [ascii-sharks](https://github.com/stackedlol/ascii-sharks) 的引擎产物
+  原样打包进 `lib/client.js`，只改最后一行：
   不再自己抓页面上的第一个 `<canvas>`，而是把 `OceanEngine` 交给插件。
 - 在 DSH 的 frame 里插入一个全屏 `<canvas>`：
   - `pointer-events: none`，不挡点击；
@@ -101,16 +102,21 @@ window.__DSH_SHARKS_MASK_INFO__                   // 看当前实际数值（含
 
 ## 来源与许可
 
-- **上游插件 `dsh-ascii-sharks`**：插件骨架（`index.js`、`cordis.patch.yml`、
-  `locale/`、`icon.svg`）与内嵌引擎来自它。**上游没有声明作者、仓库地址与许可**
+**站在巨人的肩膀上**——引擎不是我们写的：
+
+- **ASCII 鲨鱼引擎**：来自
+  [stackedlol/ascii-sharks](https://github.com/stackedlol/ascii-sharks)
+  （**MIT**，`Copyright (c) 2026 drewdi`）。本仓库用的是它打好的产物，
+  原样内嵌在 `lib/client.js` 顶部，未作算法改动。
+- **插件外壳 `dsh-ascii-sharks`**：`index.js`、`cordis.patch.yml`、`locale/`、
+  `icon.svg` 与最初的 README 来自它。**该上游没有声明作者、仓库地址与许可**
   （`package.json` 里没有 `author` / `license` / `repository`，包内也没有 LICENSE）。
-- **上游引擎 `ascii-sharks.html`**：上游 README 说它来自
-  `ascii-sharks-main/ascii-sharks.html`，原样嵌入、不改算法。作者与许可同样未声明，
-  原始出处未能确认。
-- **本仓库自己写的部分**（遮罩系统、帧率上限、停帧、DPR 上限、鱼种字形、
-  无遮罩模式、本文档）按 **MIT** 释出，见 [LICENSE](LICENSE)。
-- 免责与维护承诺：本项目对上游部分不主张权利；上游作者若提出署名或许可要求，
-  我们照办，或直接撤下。详细清单见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+  它和上面那个 GitHub 项目是**两个不同的上游**。
+- **本仓库自己写的部分**（遮罩系统、帧率上限、停帧、DPR 上限、鱼种字形与新增的
+  针鱼/灯笼鱼两种小鱼、无遮罩模式、本文档）按 **MIT** 释出，见 [LICENSE](LICENSE)。
+- 免责与维护承诺：本项目对未声明许可的那部分上游不主张权利；上游作者若提出署名
+  或许可要求，我们照办，或直接撤下。逐条清单见
+  [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 - 参考过、但当前版本**不含**其代码：`dsh-ascii-whales-main`（鲸鱼体型参数）、
   `ascii-magic-art`（MIT，水母/金鱼的画法思路）。
 
@@ -118,6 +124,11 @@ window.__DSH_SHARKS_MASK_INFO__                   // 看当前实际数值（含
 
 - 引擎自带 `prefers-reduced-motion`、`IntersectionObserver` 可见性处理与 DPR 上限 2；
   插件只负责画布生命周期与遮罩。
+- 引擎里已经有**八种鲨鱼体型**（classic / hammerhead / tiger / zebra / greathammer /
+  mako / thresher / nurse），但插件装载时没有把体型表传进去，跑的是默认的四条
+  `classic`（尺寸 1 / 0.7 / 0.84 / 0.77）。想换种类，改 `lib/client.js` 里装载引擎
+  那一行、把 specs 传进去就行，不用重写引擎。上游 demo 的 `?sharks=` 参数在这份
+  产物里是死的（能解析、没人用）。
 - 现在的效果是「边缘可见的深海微光」，不是原 HTML 那种满屏高对比度的鲨鱼。
   原因是它叠在真实 DSH 界面之上，必须优先保证正文可读——这一点上游作者也是这么写的。
 - 曾经试过把 `ascii-magic-art` 的现成作品（Swimming Whale 等整幅场景）当背景：
