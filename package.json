@@ -3,6 +3,12 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "build": "node scripts/build-engine.mjs",
+    "test": "node --test tests/species.test.mjs",
+    "check": "node --test tests/species.test.mjs",
+    "browser-check": "node scripts/browser-check.mjs"
+  },
   "license": "MIT",
   "author": "ZZJ (平躺の仙人)",
   "description": "ASCII Sharks as a DeepSeek Harness background (二次开发版): the original ascii-sharks canvas behind the Web UI, with a stage-aware mask, a frame-rate cap and a clean uninstall.",
@@ -20,6 +26,7 @@
     "locale/zh.json",
     "icon.svg",
     "README.md",
+    "docs/validation.md",
     "LICENSE",
     "THIRD_PARTY_NOTICES.md"
   ],
