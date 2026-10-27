@@ -198,3 +198,7 @@ npm run browser-check -- --url="http://127.0.0.1:PORT/?token=..."   # 浏览器�
   它是按固定网格逐格算噪声的整幅不透明画面，跟本插件的自适应尺寸 + 正文挖空
   冲突，已于 2026-10-26 回滚，代码存档在 git tag `rollback-safety-20261026`，
   未随本版本发布。
+
+---
+
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
