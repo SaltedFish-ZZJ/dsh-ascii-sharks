@@ -134,7 +134,10 @@ sp.clear()                 // 收掉大鱼
 十种体型的 kind 分别是 `whale`（座头鲸）/ `orca`（虎鲸）/ `classic` / `hammerhead` /
 `greathammer` / `zebra` / `tiger` / `mako` / `thresher` / `nurse`。
 
-改完 `lib/client.js` 后要重启 DSH：服务端按文件内容算哈希，源码一变旧地址就 404。
+改完 `lib/client.js` **不必重启**：DSH 自带客户端插件热重载（`dsh-hmr` + `dsh-client-hmr`，
+两个 profile 都装着），宿主发现插件文件变了会在 `/plugins/events` 上推一条 `rebuilt`，
+开着的页面跟着换上新的产物——2026-10-27 在 web 与桌面两端实测，改完都收到了 `rebuilt`。
+只有改 `dsh.profile.bundles`、装卸插件、改依赖这类**启动期才读**的东西才需要重启。
 
 ## 构建
 
@@ -170,7 +173,8 @@ npm run browser-check -- --url="http://127.0.0.1:PORT/?token=..."   # 浏览器�
 - **Kanji 字形部分**：`ascii-kanji-sharks`（michikusa404，MIT），
   随引擎一起编入（当前界面未开放 hanzi 模式，但代码在产物里，故署名）。
 - **插件外壳 `dsh-ascii-sharks`**：`index.js`、`cordis.patch.yml`、`locale/`、
-  `icon.svg` 与最初的 README 来自它。**该上游没有声明作者、仓库地址与许可**
+  `icon.svg`、`ascii-sharks.html`（原版附带的一张独立演示页）与最初的 README 来自它。
+  **该上游没有声明作者、仓库地址与许可**
   （`package.json` 里没有 `author` / `license` / `repository`，包内也没有 LICENSE）。
   它和上面那个 GitHub 项目是**两个不同的上游**。
 - **本仓库自己写的部分**（外层引擎接线与三处补丁、遮罩系统、帧率上限、像素密度上限、

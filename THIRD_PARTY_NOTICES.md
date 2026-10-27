@@ -20,8 +20,10 @@
 - **怎么进到插件里**：`scripts/build-engine.mjs` 用 esbuild 把 `vendor/ascii-sharks`
   编成一个 IIFE，内联进 `lib/client.js` 的 `// @engine:start` 与 `// @engine:end`
   之间，注册为 `window.__DSH_ASCII_SHARKS_ENGINE__`，由插件外壳挂到自己的画布上。
-  **我们不发布 vendor 源码，发布的是这份编译产物**；`package.json` 的 `files`
-  因此仍然只列运行时要用的文件。
+  **本仓库里是包含这份 vendor 源码的**（MIT，版权声明原样保留在
+  `vendor/ascii-sharks/LICENSE`），插件运行时用的是它的编译产物。
+  `package.json` 的 `files` 只列运行时要用的文件，所以 `npm publish` 出来的包里
+  只有编译产物、没有 vendor 源码——**从 GitHub 拿仓库会拿到源码，从 npm 拿包不会**。
 - **我们打的补丁**（`engine.ts` 里是 `[dsh-ascii-sharks 补]`，`renderer.ts` 里是
   `[patch:original-color]`，每处都标明）：
   **框架（`vendor/ascii-sharks/engine.ts`）三处：**
@@ -78,8 +80,10 @@
 
 ## 四、上游：dsh-ascii-sharks 原版插件外壳（作者与许可未声明）
 
-- **内容**：插件骨架（`index.js`、`cordis.patch.yml`、`locale/`、`icon.svg`）
-  与本仓库最初的 `README.md` 原文。
+- **内容**：插件骨架（`index.js`、`cordis.patch.yml`、`locale/`、`icon.svg`、
+  `ascii-sharks.html`）与本仓库最初的 `README.md` 原文。其中 `ascii-sharks.html`
+  是原版附带的一张独立演示页（英文界面、黑底全屏画布），插件运行并不需要它，
+  留在仓库里只为留档。
 - **来源**：随 DeepSeek Harness 的插件安装包取得（本机 2026-10-22 安装；
   原样备份见 `D:/deepseek_work/dsh-ascii-sharks-orig-20261025`）。
 - **作者**：未在任何文件里声明作者、仓库地址或许可证；`package.json` 里
